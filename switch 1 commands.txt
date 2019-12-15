@@ -1,0 +1,22 @@
+Switch>en
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#vlan 10
+Switch(config-vlan)#name Data
+Switch(config-vlan)#vlan 20/
+Switch(config-vlan)#name Voice
+Switch(config-vlan)#vlan 99
+Switch(config-vlan)#name Management
+Switch(config-vlan)#exit
+Switch(config)#intvlan 99
+Switch(config-if)#
+Switch(config-if)#ip add 192.168.99.10 255.255.255.0
+Switch(config-if)#no shut
+Switch(config-if)#do wr
+Building configuration...
+[OK]
+Switch(config-if)#exit
+Switch(config)#ip default-gateway 192.168.99.1
+Switch(config)#int fa0/1
+Switch(config-if)#switchport trunk native vlan 99
+Switch(config-if)#exit
